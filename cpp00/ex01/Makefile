@@ -1,4 +1,4 @@
-NAME = canard
+NAME = PhoneBook
 
 
 SOURCES = 	PhoneBook.cpp \
