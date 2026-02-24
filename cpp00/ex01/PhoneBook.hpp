@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 13:22:21 by sbrochar          #+#    #+#             */
-/*   Updated: 2026/02/23 19:15:53 by sbrochar         ###   ########.fr       */
+/*   Updated: 2026/02/24 12:46:11 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,28 @@ class PhoneBook
 		std::string buffer;
 		std::cout << "First Name: ";
 		std::cin >> buffer;
+		if (std::cin.eof())
+			exit(0);
 		tab[index].set_first_name(buffer);
 		std::cout << "Last Name: ";
 		std::cin >> buffer;
+		if (std::cin.eof())
+			exit(0);
 		tab[index].set_last_name(buffer);
 		std::cout << "Nickname: ";
 		std::cin >> buffer;
+		if (std::cin.eof())
+			exit(0);
 		tab[index].set_nickname(buffer);
 		std::cout << "Phone Number: ";
 		std::cin >> buffer;
+		if (std::cin.eof())
+			exit(0);
 		tab[index].set_phone_number(buffer);
 		std::cout << "Darkest Secret: ";
 		std::cin >> buffer;
+		if (std::cin.eof())
+			exit(0);
 		tab[index].set_darkest_secret(buffer);
 		index++;
 		if (contact_total < 8)
@@ -83,40 +93,36 @@ class PhoneBook
 	void search_index(std::string command)
 	{
 		int len;
-		
-		std::cout << "Enter an index between 0 and 7, please" << std::endl;
-		std::cin >> command;
-		if (((len = command.length()) != 1) || command[0] < '0' || command[0] > '7')
+		int tmp;
+
+		if (contact_total == 0)
 		{
-			std::cout << "Enter an index between 0 and 7, please" << std::endl;
-			std::cin >> command;
-			while (!(command > "8" && command < "0"))
-			{
-				std::cout << "Enter an index between 0 and 7,please" << std::endl;
-				std::cin >> command;
-			}
+			std::cout << "No contact information recorded" << std::endl;
+			return ;
 		}
-		int tmp = atoi(command.c_str());
-		if (tmp >= contact_total || tmp < 0)
+
+		while (true)
 		{
-			if(tmp == 0 && contact_total == 0)
-			{
-				std::cout << "No contact information recorded" << std::endl;
-				return;
-			}
-			std::cout << "The index does not exist" << std::endl;
+			std::cout << "Enter an index between 0 and 7" << std::endl;
 			std::cin >> command;
-			while (tmp > contact_total && tmp < 0)
+			if (std::cin.eof())
+				exit(0);
+			if (((len = command.length()) == 1) && (command[0] >= '0'
+					&& command[0] <= '7'))
 			{
-				std::cout << "The index does not exist" << std::endl;
-				std::cin >> command;
+				tmp = atoi(command.c_str());
+				if (tmp < contact_total)
+					break ;
 			}
+			std::cout << "Invalid index, try again" << std::endl;
 		}
-		std::cout << tmp << std::endl;
-		std::cout << tab[tmp].get_first_name() << std::endl;
-		std::cout << tab[tmp].get_last_name() << std::endl;
-		std::cout << tab[tmp].get_nickname() << std::endl;
-		std::cout << tab[tmp].get_phone_number() << std::endl;
-		std::cout << tab[tmp].get_darkest_secret() << std::endl;
+		std::cout << "**********************" << std::endl;
+		std::cout << "Index: " << tmp << std::endl;
+		std::cout << "First Name: " << tab[tmp].get_first_name() << std::endl;
+		std::cout << "Last Name: " << tab[tmp].get_last_name() << std::endl;
+		std::cout << "Nickname: " << tab[tmp].get_nickname() << std::endl;
+		std::cout << "Phone Number: " << tab[tmp].get_phone_number() << std::endl;
+		std::cout << "Darkest Secret: " << tab[tmp].get_darkest_secret() << std::endl;
+		std::cout << "**********************" << std::endl;
 	}
 };
