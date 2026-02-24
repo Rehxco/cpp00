@@ -1,10 +1,12 @@
 NAME = PhoneBook
 
 
-SOURCES = 	PhoneBook.cpp \
-		
+SOURCES = 	main.cpp \
+			PhoneBook.cpp \
+		 	Contact.cpp 
 
-
+HEADER = PhoneBook.hpp \
+		 Contact.hpp 	\
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
@@ -19,7 +21,7 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS)
 
-%.o: %.c $(HEADER)
+%.o: %.cpp $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean: 
