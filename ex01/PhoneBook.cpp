@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:40:51 by sbrochar          #+#    #+#             */
-/*   Updated: 2026/02/24 16:42:27 by sbrochar         ###   ########.fr       */
+/*   Updated: 2026/03/04 18:10:38 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,12 @@ void PhoneBook::search_index(std::string command)
 	}
 	while (true)
 	{
-		std::cout << "Enter an index between 0 and 7" << std::endl;
+		std::cout << "Enter an index between 0 and 7 or CLOSE to stop the search" << std::endl;
 		std::getline(std::cin, command);
 		if (std::cin.eof())
 			exit(0);
+		if(command == "CLOSE")
+				return ;
 		if (((len = command.length()) == 1) && (command[0] >= '0'
 				&& command[0] <= '7'))
 		{

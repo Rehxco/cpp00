@@ -6,7 +6,7 @@
 /*   By: sbrochar <sbrochar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 16:11:50 by sbrochar          #+#    #+#             */
-/*   Updated: 2026/02/24 16:59:05 by sbrochar         ###   ########.fr       */
+/*   Updated: 2026/03/04 18:13:22 by sbrochar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ int	main(void)
 				phone.search_index(command);
 			}
 			else if (command == "END")
-				return (0);
+				{
+					std::cout << "We wish you a very nice day <3" << std::endl;
+					return (0);
+				}
+					
 		}
 	}
 	return (0);
